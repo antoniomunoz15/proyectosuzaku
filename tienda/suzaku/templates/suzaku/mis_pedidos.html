@@ -1,0 +1,47 @@
+{% extends "./base.html" %}
+{% load custom_filters %}
+
+{% block title %}Mis Pedidos | Tienda Suzaku{% endblock %}
+
+{% block content %}
+<section class="mis-pedidos">
+    <h2>📦 Mis Pedidos</h2>
+
+    {% if pedidos %}
+        <table class="tabla-pedidos">
+            <thead>
+                <tr>
+                    <th>ID del Pedido</th>
+                    <th>Estado</th>
+                    <th>Productos</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pedido in pedidos %}
+                <tr>
+                    <td>#{{ pedido.id }}</td>
+                    <td>
+                        <span class="estado {{ pedido.estado|lower }}">{{ pedido.estado|capfirst }}</span>
+                    </td>
+                    <td>
+                        <ul>
+                        {% for producto_pedido in pedido.productospedido_set.all %}
+                            <li>
+                                <strong>{{ producto_pedido.producto.nombre }}</strong> - 
+                                {{ producto_pedido.precio }} € x {{ producto_pedido.cantidad }}
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </td>
+                    <td><strong>€{{ pedido.total|floatformat:2 }}</strong></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="no-pedidos">❌ No tienes pedidos registrados.</p>
+        <a href="{% url 'lista_productos' %}" class="btn">Explorar productos</a>
+    {% endif %}
+</section>
+{% endblock %}

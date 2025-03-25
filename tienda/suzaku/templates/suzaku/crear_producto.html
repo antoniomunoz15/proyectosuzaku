@@ -1,0 +1,42 @@
+{% extends "./base.html" %}
+
+{% block title %}Crear Producto | Tienda Suzaku{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1 class="text-center mb-4">🆕 Crear Nuevo Producto</h1>
+
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow rounded-4 border-0">
+        <div class="card-body p-4">
+          <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+            {% csrf_token %}
+            {% for field in form %}
+              <div class="form-floating mb-4">
+                {{ field }}
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {% if field.errors %}
+                  <div class="invalid-feedback d-block">
+                    {{ field.errors|striptags }}
+                  </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-success w-100 py-2 rounded-pill">
+              ✅ Crear Producto
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="text-center mt-3">
+        <a href="{% url 'lista_productos' %}" class="btn btn-outline-secondary rounded-pill">
+          ⬅️ Volver a la lista de productos
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

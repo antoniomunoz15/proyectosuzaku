@@ -1,0 +1,18 @@
+{% extends "./base.html" %}
+
+{% block title %}Editar Producto | Tienda Suzaku{% endblock %}
+
+{% block content %}
+<section class="editar-producto">
+    <h1>✏️ Editar Producto</h1>
+
+    <form method="POST" enctype="multipart/form-data" class="form-producto">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-guardar">💾 Guardar cambios</button>
+    </form>
+
+    <a href="{% url 'lista_productos' %}" class="btn btn-volver">⬅️ Volver a la lista de productos</a>
+</section>
+{% endblock %}

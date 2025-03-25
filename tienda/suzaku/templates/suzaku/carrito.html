@@ -1,0 +1,54 @@
+{% extends "./base.html" %}
+
+{% block title %}Carrito de Compras | Tienda Suzaku{% endblock %}
+
+{% block content %}
+<section class="carrito">
+    <h2>Carrito de Compras</h2>
+
+    {% if productos %}
+        <table class="tabla-carrito">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in productos %}
+                <tr>
+                    <td>{{ item.producto.nombre }}</td>
+                    <td>{{ item.producto.precio }} €</td>
+                    <td>
+                        <a href="{% url 'disminuir_cantidad' producto_id=item.producto.id %}" class="btn-cantidad">-</a>
+                        <span class="cantidad">{{ item.cantidad }}</span>
+                        <a href="{% url 'aumentar_cantidad' producto_id=item.producto.id %}" class="btn-cantidad">+</a>
+                    </td>
+                    <td>{{ item.subtotal|floatformat:2 }} €</td>
+                    <td>
+                        <a href="{% url 'eliminar_del_carrito' producto_id=item.producto.id %}" class="btn eliminar">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="total-compra">
+            <p><strong>Total:</strong> €{{ total|floatformat:2 }}</p>
+        </div>
+
+        <div class="acciones-carrito">
+            <a href="{% url 'checkout' %}" class="btn btn-primary">Finalizar Compra</a>
+            <a href="{% url 'vaciar_carrito' %}" class="btn btn-secundario">Vaciar carrito</a>
+        </div>
+    {% else %}
+        <p class="mensaje-vacio">El carrito está vacío.</p>
+        <a href="{% url 'lista_productos' %}" class="btn btn-secundario">Ver productos</a>
+    {% endif %}
+
+    <a href="{% url 'lista_productos' %}" class="btn btn-secundario">Seguir comprando</a>
+</section>
+{% endblock %}

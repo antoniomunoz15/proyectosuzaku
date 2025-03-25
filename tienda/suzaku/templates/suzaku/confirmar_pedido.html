@@ -1,0 +1,47 @@
+{% extends "./base.html" %}
+
+{% block title %}Pedido Confirmado | Tienda Suzaku{% endblock %}
+
+{% block content %}
+<section class="pedido-confirmado">
+    <h2>✅ Pedido Confirmado</h2>
+    <p>Gracias por tu compra, <strong>{{ request.user.username }}</strong>!</p>
+    <p>Tu pedido será enviado a: <strong>{{ pedido.direccion_envio }}</strong></p>
+
+    <!-- 🔹 Resumen del Pedido -->
+    <section class="resumen-pedido">
+        <h3>Resumen del pedido:</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio Unitario</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in productos_pedido %}
+                <tr>
+                    <td>{{ item.producto.nombre }}</td>
+                    <td>€{{ item.precio|floatformat:2 }}</td>
+                    <td>{{ item.cantidad }}</td>
+                    <td><strong>€{{ item.subtotal|floatformat:2 }}</strong></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <!-- 🔹 Totales -->
+    <section class="totales">
+        <h3>Total sin descuento: €{{ pedido.total|floatformat:2 }}</h3>
+        {% if pedido.descuento_aplicado > 0 %}
+            <p>Descuento aplicado: <strong>{{ pedido.descuento_aplicado }}%</strong></p>
+            <h3>Total con descuento: €{{ pedido.total_con_descuento|floatformat:2 }}</h3>
+        {% endif %}
+    </section>
+
+    <a href="{% url 'index' %}" class="btn-volver">Volver a la tienda</a>
+</section>
+{% endblock %}

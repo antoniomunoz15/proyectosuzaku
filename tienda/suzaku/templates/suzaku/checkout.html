@@ -1,0 +1,60 @@
+{% extends "./base.html" %}
+
+{% block title %}Checkout | Tienda Suzaku{% endblock %}
+
+{% block content %}
+<section class="checkout">
+    <h2>Finalizar Compra</h2>
+
+    <!-- 🔹 Código de Descuento -->
+    <section class="codigo-descuento">
+        <h3>¿Tienes un código de descuento?</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="descuento">Introduce el código:</label>
+            <input type="text" name="descuento" id="descuento" value="{{ request.POST.descuento }}">
+            <button type="submit" class="btn-aplicar">Aplicar</button>
+        </form>
+    </section>
+
+    <!-- 🔹 Lista de Productos -->
+    <section class="productos-checkout">
+        <h3>Resumen de tu carrito</h3>
+        <ul>
+            {% for item in productos %}
+                <li>
+                    <strong>{{ item.producto.nombre }}</strong> - 
+                    {% if descuento > 0 %}
+                        <span class="precio-original">€{{ item.precio_original|floatformat:2 }}</span>
+                        <span class="precio-descuento">€{{ item.precio_con_descuento|floatformat:2 }}</span>
+                    {% else %}
+                        €{{ item.producto.precio|floatformat:2 }}
+                    {% endif %}
+                    x {{ item.cantidad }} = <strong>€{{ item.subtotal|floatformat:2 }}</strong>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- 🔹 Totales -->
+    <section class="totales">
+        <h3>Total sin descuento: €{{ total_sin_descuento|floatformat:2 }}</h3>
+        {% if descuento > 0 %}
+            <p>Descuento aplicado: <strong>{{ descuento }}%</strong></p>
+            <h3>Total con descuento: €{{ total_con_descuento|floatformat:2 }}</h3>
+        {% endif %}
+    </section>
+
+    <!-- 🔹 Formulario de Dirección y Confirmación -->
+    <section class="direccion-envio">
+        <h3>Dirección de Envío</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="descuento" value="{{ request.POST.descuento }}">
+            <label for="direccion_envio">Dirección:</label>
+            <input type="text" name="direccion_envio" id="direccion_envio" required>
+            <button type="submit" class="btn-confirmar">Confirmar Pedido</button>
+        </form>
+    </section>
+</section>
+{% endblock %}
