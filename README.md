@@ -1,6 +1,6 @@
-# 🐉 Suzaku - Tienda Virtual de Productos en Tendencia
+# 🐉 InstaShop - Tienda Virtual de Productos en Tendencia
 
-**Suzaku** es un proyecto de tienda virtual desarrollado como parte del proyecto integrado del Grado Superior de Desarrollo de Aplicaciones Web (DAW). Este ecommerce permite a los usuarios registrarse, gestionar su perfil, añadir productos al carrito, aplicar códigos de descuento y realizar pedidos mediante distintos métodos de pago como PayPal (en proceso de integración).
+**InstaShop** es un proyecto de tienda virtual desarrollado como parte del proyecto integrado del Grado Superior de Desarrollo de Aplicaciones Web (DAW). Este ecommerce permite a los usuarios registrarse, gestionar su perfil, añadir productos al carrito, aplicar códigos de descuento y realizar pedidos mediante distintos métodos de pago como PayPal (en proceso de integración).
 
 ---
 
