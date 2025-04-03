@@ -67,8 +67,8 @@
 
 ## 🧑‍💻 Autor
 
-**Nombre del autor:** [Tu Nombre Aquí]  
-**Centro educativo:** [Tu instituto / FP]  
+**Nombre del autor:** [Antonio Muñoz Reinoso]  
+**Centro educativo:** [IES POLIGONO SUR ]  
 **Ciclo:** Desarrollo de Aplicaciones Web (DAW)  
 **Curso:** [2024 - 2025]
 
