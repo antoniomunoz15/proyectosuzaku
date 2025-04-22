@@ -144,3 +144,15 @@ class ProductoPedido(models.Model):
 
     def __str__(self):
         return f"{self.producto.nombre} - {self.cantidad} unidades en Pedido {self.pedido.id}"
+
+
+# MODELO CARROUSEL EN DJANGO
+# models.py
+class ImagenCarrusel(models.Model):
+    titulo = models.CharField(max_length=100, blank=True)
+    imagen = models.ImageField(upload_to='carrusel/')
+    activo = models.BooleanField(default=True)
+    creado = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.titulo or f"Imagen {self.id}"

@@ -15,6 +15,12 @@ import { MetodosPagoComponent } from './components/metodos-pago/metodos-pago.com
 import { ConfiguracionComponent } from './components/configuracion/configuracion.component';
 import { SeguridadComponent } from './components/seguridad/seguridad.component';
 import { inject } from '@angular/core';
+import { AdminLayoutComponent } from './components/admin-layout/admin-layout.component';
+import { AdminProductosComponent } from './components/admin-productos/admin-productos.component';
+import { AdminPedidosComponent } from './components/admin-pedidos/admin-pedidos.component';
+import { AdminDescuentosComponent } from './components/admin-descuentos/admin-descuentos.component';
+import { AdminCarruselComponent } from './components/admin-carrusel/admin-carrusel.component';
+
 
 const AuthGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
@@ -33,6 +39,14 @@ export const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
   { path: 'crear-usuario', component: CrearUsuarioComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'administrador',
+  component: AdminLayoutComponent,
+  children: [
+    { path: 'productos', component: AdminProductosComponent },
+    { path: 'pedidos', component: AdminPedidosComponent },
+    { path: 'descuentos', component: AdminDescuentosComponent },
+    { path: 'carrusel', component: AdminCarruselComponent },
+  ]},
   {
     path: 'perfil',
     canActivate: [AuthGuard],

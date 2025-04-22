@@ -9,9 +9,12 @@ from .views import *
 ############################################################
 
 router = DefaultRouter()
-router.register(r'productos', ProductoViewSet)  # 📦 API para productos
-router.register(r'usuarios', UsuarioViewSet)    # 👤 API para usuarios
+router.register(r'productos', ProductoViewSet)
+router.register(r'usuarios', UsuarioViewSet)
 router.register(r'direcciones', DireccionViewSet, basename='direccion')
+router.register(r'pedidos', PedidoViewSet)  # ✅ Agregado
+router.register(r'descuentos', CodigoDescuentoViewSet)
+router.register(r'carrusel', ImagenCarruselViewSet)
 
 ############################################################
 # 🌐 DEFINICIÓN DE RUTAS

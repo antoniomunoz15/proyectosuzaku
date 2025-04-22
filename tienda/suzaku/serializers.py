@@ -108,3 +108,10 @@ class PedidoSerializer(serializers.ModelSerializer):
         if obj.codigo_descuento:
             return obj.codigo_descuento.codigo
         return None
+    
+# serializers.py
+class ImagenCarruselSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ImagenCarrusel
+        fields = '__all__'
+    

@@ -78,6 +78,19 @@ def login_view(request):
     else:
         return Response({'error': 'Credenciales incorrectas.'},
                         status=status.HTTP_400_BAD_REQUEST)
+    
+
+from rest_framework import viewsets
+from .models import Pedido
+from .serializers import PedidoSerializer
+
+class PedidoViewSet(viewsets.ModelViewSet):
+    queryset = Pedido.objects.all()
+    serializer_class = PedidoSerializer
+
+class ImagenCarruselViewSet(viewsets.ModelViewSet):
+    queryset = ImagenCarrusel.objects.all()
+    serializer_class = ImagenCarruselSerializer
 
 ############################################################
 # 👤 API DE USUARIOS
@@ -170,7 +183,13 @@ class DireccionViewSet(viewsets.ModelViewSet):
 
         return Response({"error": "No hay dirección activa"}, status=404)
 
+from .models import CodigoDescuento
+from .serializers import CodigoDescuentoSerializer
+from rest_framework import viewsets
 
+class CodigoDescuentoViewSet(viewsets.ModelViewSet):
+    queryset = CodigoDescuento.objects.all()
+    serializer_class = CodigoDescuentoSerializer
 
 from django.contrib.auth import authenticate, login
 from rest_framework.authtoken.models import Token
@@ -616,3 +635,4 @@ def lista_productos(request):
 
 def index(request):
     return render(request, 'suzaku/index.html')
+

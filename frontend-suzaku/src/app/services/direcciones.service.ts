@@ -36,4 +36,8 @@ export class DireccionesService {
     // Ajusta la URL si tu endpoint es distinto (ej. /api/direcciones/activa/)
     return this.http.get<any>(`${this.apiUrl}activa/`);
   }
+
+  getTodasDirecciones(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
+  }
 }

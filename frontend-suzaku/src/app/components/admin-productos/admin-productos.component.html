@@ -1,0 +1,26 @@
+<div class="producto-admin">
+  <h2>Gestión de Productos</h2>
+
+  <form (ngSubmit)="guardarProducto()" class="formulario-producto">
+    <input [(ngModel)]="nuevoProducto.nombre" name="nombre" placeholder="Nombre" required />
+    <input [(ngModel)]="nuevoProducto.descripcion" name="descripcion" placeholder="Descripción" required />
+    <input [(ngModel)]="nuevoProducto.precio" name="precio" type="number" placeholder="Precio" required />
+    <input [(ngModel)]="nuevoProducto.stock" name="stock" type="number" placeholder="Stock" required />
+    <input type="file" (change)="seleccionarImagen($event)" />
+
+
+    <button type="submit">
+      {{ editandoProducto ? 'Actualizar Producto' : 'Crear Producto' }}
+    </button>
+    <button type="button" (click)="cancelarEdicion()" *ngIf="editandoProducto">Cancelar</button>
+  </form>
+
+  <div *ngFor="let producto of productos" class="producto-card">
+    <img [src]="getRutaFoto(producto.foto)" alt="Imagen del producto" class="producto-img" />
+    <h3>{{ producto.nombre }}</h3>
+    <p>{{ producto.descripcion }}</p>
+    <p><strong>{{ producto.precio }} €</strong></p>
+    <button (click)="editarProducto(producto)">Editar</button>
+    <button (click)="eliminarProducto(producto.id)">Eliminar</button>
+  </div>
+</div>

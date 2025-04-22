@@ -142,7 +142,7 @@ export class CheckoutComponent implements OnInit {
 
     const pedidoData = {
       user_id: this.usuarioId,
-      direccion: this.direccionActivaStr,
+      direccion: this.direccionActivaId,
       descuento: this.descuento,
       codigo_descuento: this.codigoDescuento,
       items: this.productosEnCarrito.map(item => ({

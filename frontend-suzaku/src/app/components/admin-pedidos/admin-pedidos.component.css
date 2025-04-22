@@ -1,0 +1,41 @@
+admin-pedidos.component.css
+.admin-pedidos {
+  max-width: 900px;
+  margin: auto;
+}
+
+.pedido {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 20px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.pedido h3 {
+  margin-top: 0;
+}
+
+.pedido button {
+  margin-right: 10px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+}
+
+.pedido button:last-child {
+  background-color: #dc3545;
+}
+
+.pedido-producto-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 10px;
+  vertical-align: middle;
+}

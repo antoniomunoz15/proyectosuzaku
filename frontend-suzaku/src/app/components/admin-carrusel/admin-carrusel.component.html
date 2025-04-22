@@ -1,0 +1,21 @@
+<div class="admin-carrusel">
+    <h2>Gestión del Carrusel</h2>
+  
+    <form (ngSubmit)="guardarImagen()" class="formulario">
+      <input [(ngModel)]="nuevaImagen.titulo" name="titulo" placeholder="Título" />
+      <label>
+        <input type="checkbox" [(ngModel)]="nuevaImagen.activo" name="activo" /> Activo
+      </label>
+      <input type="file" (change)="seleccionarImagen($event)" />
+      <button type="submit">{{ editando ? 'Actualizar' : 'Crear' }}</button>
+      <button type="button" (click)="cancelar()" *ngIf="editando">Cancelar</button>
+    </form>
+  
+    <div *ngFor="let img of imagenes" class="imagen">
+      <img [src]="getRutaImagen(img.imagen)" alt="{{ img.titulo }}" />
+      <p><strong>{{ img.titulo }}</strong></p>
+      <p>Activo: {{ img.activo ? 'Sí' : 'No' }}</p>
+      <button (click)="editar(img)">Editar</button>
+      <button (click)="eliminar(img.id)">Eliminar</button>
+    </div>
+  </div>

@@ -1,0 +1,16 @@
+<div class="admin-descuentos">
+    <h2>Gestión de Descuentos</h2>
+  
+    <form (ngSubmit)="guardarDescuento()" class="formulario">
+      <input [(ngModel)]="nuevoDescuento.codigo" name="codigo" placeholder="Código" required>
+      <input [(ngModel)]="nuevoDescuento.porcentaje_descuento" name="porcentaje" type="number" placeholder="% Descuento" required>
+      <button type="submit">{{ editando ? 'Actualizar' : 'Crear' }}</button>
+      <button type="button" (click)="cancelar()" *ngIf="editando">Cancelar</button>
+    </form>
+  
+    <div *ngFor="let d of descuentos" class="descuento">
+      <p><strong>{{ d.codigo }}</strong>: {{ d.porcentaje_descuento }}%</p>
+      <button (click)="editar(d)">Editar</button>
+      <button (click)="eliminar(d.id)">Eliminar</button>
+    </div>
+  </div>

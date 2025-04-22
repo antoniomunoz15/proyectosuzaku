@@ -25,4 +25,8 @@ export class UsuarioService {
   updateUsuario(id: number, formData: FormData): Observable<any> {
     return this.http.patch<any>(`${this.apiUrl}${id}/`, formData);
   }
+
+  getUsuarios(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
+  }
 }

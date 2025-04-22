@@ -1,0 +1,36 @@
+// admin-pedidos.component.html
+<div class="admin-pedidos">
+  <h2>Gestión de Pedidos</h2>
+
+  <div class="pedido" *ngFor="let pedido of pedidos">
+    <h3>Pedido #{{ pedido.id }}</h3>
+    <p><strong>Cliente:</strong> {{ pedido.user }}</p>
+    <p><strong>Dirección:</strong> {{ pedido.direccion }}</p>
+    <p><strong>Total:</strong> {{ pedido.total }} €</p>
+    <p><strong>Estado:</strong>
+      <span *ngIf="pedidoEditando?.id !== pedido.id">{{ pedido.estado }}</span>
+      <select *ngIf="pedidoEditando?.id === pedido.id" [(ngModel)]="estadoSeleccionado">
+        <option *ngFor="let est of estados" [value]="est">{{ est }}</option>
+      </select>
+    </p>
+
+    <div *ngIf="pedidoEditando?.id === pedido.id">
+      <button (click)="guardarEstado()">Guardar</button>
+      <button (click)="cancelarEdicion()">Cancelar</button>
+    </div>
+    <div *ngIf="pedidoEditando?.id !== pedido.id">
+      <button (click)="editarEstado(pedido)">Editar estado</button>
+      <button (click)="eliminarPedido(pedido.id)">Eliminar</button>
+    </div>
+
+    <div *ngIf="pedido.productos?.length">
+      <h4>Productos:</h4>
+      <ul>
+        <li *ngFor="let item of pedido.productos">
+          <img [src]="getRutaFoto(item.producto.foto)" alt="Imagen producto" class="pedido-producto-img" />
+          {{ item.producto.nombre }} - {{ item.cantidad }} x {{ item.precio }} €
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
